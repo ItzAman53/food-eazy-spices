@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Food Eazy Spices</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #E7D8C9; /* warm beige */
+      color: #4B3B2B; /* deep brown text */
+    }
+
+    header {
+      background-color: #A0522D; /* sienna, earthy brown-orange */
+      color: #F5F0E6; /* light cream */
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    header p {
+      font-size: 1.1em;
+      margin-top: 5px;
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 30px 10px;
+      gap: 25px;
+    }
+
+    .product {
+      background-color: #fff;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      width: 300px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 15px;
+      gap: 12px;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+    }
+
+    .product img {
+      width: 100%;
+      height: 250px;
+      object-fit: contain; /* show full image without cropping */
+      border-radius: 12px;
+      background: #f9f6f2; /* subtle background for transparent images */
+    }
+
+    .product h3, .product p, .product strong {
+      margin: 0;
+      text-align: center;
+      width: 100%;
+    }
+
+    .product strong {
+      color: #A0522D; /* sienna */
+      font-size: 1.1em;
+      margin-top: 5px;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.7);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .modal-content {
+      background-color: white;
+      border-radius: 12px;
+      max-width: 90vw;
+      max-height: 90vh;
+      overflow: auto;
+      position: relative;
+      padding: 20px;
+      text-align: center;
+      color: #4B3B2B; /* deep brown */
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .modal-content img {
+      max-width: 100%;
+      max-height: 60vh;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #f9f6f2;
+    }
+
+    .close {
+      color: #aaa;
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.3s ease;
+    }
+
+    .close:hover {
+      color: black;
+    }
+
+    footer {
+      background-color: #C2B280; /* khaki / sand color */
+      color: #4B3B2B;
+      text-align: center;
+      padding: 20px 15px;
+      font-size: 1em;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Food Eazy Spices</h1>
+    <p>Pure, Authentic & Flavorful Indian Spices</p>
+  </header>
+
+  <section class="products">
+    <div class="product" onclick="openModal('turmeric')"
+      data-name="Turmeric Powder"
+      data-description="Our turmeric is rich in curcumin, ideal for health and taste."
+      data-price="₹120/kg"
+      data-img="images/turmeric.png">
+      <img src="images/turmeric.png" alt="Turmeric">
+      <h3>Turmeric</h3>
+      <p>Bright yellow earthy spice</p>
+      <strong>₹120/kg</strong>
+    </div>
+
+    <div class="product" onclick="openModal('chili')"
+      data-name="Red Chili Powder"
+      data-description="Ground from best red chilies. Gives heat and color."
+      data-price="₹140/kg"
+      data-img="images/chili.png">
+      <img src="images/chili.png" alt="Chili">
+      <h3>Chili Powder</h3>
+      <p>Hot and spicy kick</p>
+      <strong>₹140/kg</strong>
+    </div>
+
+    <div class="product" onclick="openModal('coriander')"
+      data-name="Coriander Powder"
+      data-description="Lemony aroma. Perfect for curries and veggies."
+      data-price="₹110/kg"
+      data-img="images/coriander.png">
+      <img src="images/coriander.png" alt="Coriander">
+      <h3>Coriander</h3>
+      <p>Mild, aromatic base</p>
+      <strong>₹110/kg</strong>
+    </div>
+
+    <div class="product" onclick="openModal('garammasala')"
+      data-name="Garam Masala"
+      data-description="Signature Indian blend with warm spices."
+      data-price="₹180/kg"
+      data-img="images/garammasala.png">
+      <img src="images/garammasala.png" alt="Garam Masala">
+      <h3>Garam Masala</h3>
+      <p>Fragrant, all-purpose spice mix</p>
+      <strong>₹180/kg</strong>
+    </div>
+
+    <div class="product" onclick="openModal('chatmasala')"
+      data-name="Chaat Masala"
+      data-description="Tangy and zesty for salads, fruits, and chaats."
+      data-price="₹130/kg"
+      data-img="images/chatmasala.jpg">
+      <img src="images/chatmasala.jpg" alt="Chaat Masala">
+      <h3>Chaat Masala</h3>
+      <p>Tangy Indian street style flavor</p>
+      <strong>₹130/kg</strong>
+    </div>
+
+    <div class="product" onclick="openModal('muttonmasala')"
+      data-name="Mutton Masala"
+      data-description="Perfect spice blend for delicious mutton dishes."
+      data-price="₹150/kg"
+      data-img="images/muttonmasala.jpg">
+      <img src="images/muttonmasala.jpg" alt="Mutton Masala">
+      <h3>Mutton Masala</h3>
+      <p>Rich & bold taste</p>
+      <strong>₹150/kg</strong>
+    </div>
+
+    <div class="product" onclick="openModal('sabzimasala')"
+      data-name="Sabzi Masala"
+      data-description="Great for daily vegetable preparations."
+      data-price="₹125/kg"
+      data-img="images/sabzimasala.jpg">
+      <img src="images/sabzimasala.jpg" alt="Sabzi Masala">
+      <h3>Sabzi Masala</h3>
+      <p>Everyday essential blend</p>
+      <strong>₹125/kg</strong>
+    </div>
+  </section>
+
+  <div id="productModal" class="modal" onclick="if(event.target === this) closeModal()">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="modalTitle"></h2>
+      <img id="modalImage" src="" alt="">
+      <p id="modalDesc"></p>
+      <strong id="modalPrice"></strong>
+    </div>
+  </div>
+
+  <footer>
+    <p>Address: Ukthi Urf Harihatputrr Near Bypass Rewa</p>
+    <p>Phone Number: 9893109621</p>
+    <p>&copy; 2025 Food Eazy Spices. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function openModal(id) {
+      const product = document.querySelector(`.product[onclick="openModal('${id}')"]`);
+      document.getElementById('modalTitle').textContent = product.dataset.name;
+      document.getElementById('modalImage').src = product.dataset.img;
+      document.getElementById('modalImage').alt = product.dataset.name;
+      document.getElementById('modalDesc').textContent = product.dataset.description;
+      document.getElementById('modalPrice').textContent = product.dataset.price;
+      document.getElementById('productModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('productModal').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
