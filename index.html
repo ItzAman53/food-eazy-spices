@@ -5,107 +5,109 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Food Eazy Spices - Catalog</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #d7ccc8; /* earthy light brown */
-      margin: 0;
-      padding: 0;
-      color: #3e2723;
-    }
-    header {
-      background-color: #6d4c41; /* darker earthy brown */
-      color: white;
-      text-align: center;
-      padding: 1rem 0;
-    }
-    .container {
-      max-width: 900px;
-      margin: 20px auto;
-      padding: 0 1rem;
-    }
-    h1 {
-      margin-bottom: 0.5rem;
-    }
-    .products {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-    .product {
-      background: #f5f5f5;
-      border-radius: 8px;
-      padding: 15px;
-      width: 220px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-      cursor: pointer;
-      text-align: center;
-    }
-    .product img {
-      width: 100%;
-      border-radius: 6px;
-      object-fit: cover;
-      height: 150px;
-      margin-bottom: 10px;
-      transition: transform 0.3s;
-    }
-    .product:hover img {
-      transform: scale(1.05);
-    }
-    .product-name {
-      font-weight: bold;
-      margin-bottom: 0.3rem;
-    }
-    .price {
-      color: #6d4c41;
-      margin-bottom: 10px;
-    }
-    footer {
-      background-color: #6d4c41;
-      color: white;
-      text-align: center;
-      padding: 1rem 0;
-      margin-top: 40px;
-    }
-    /* Modal styles */
-    .modal {
-      display: none; /* Hidden by default */
-      position: fixed;
-      z-index: 10;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.7);
-    }
-    .modal-content {
-      background-color: #fff;
-      margin: 10% auto;
-      padding: 20px;
-      border-radius: 10px;
-      width: 80%;
-      max-width: 600px;
-      text-align: center;
-      position: relative;
-    }
-    .modal-content img {
-      width: 100%;
-      max-height: 350px;
-      object-fit: contain;
-      border-radius: 8px;
-    }
-    .modal-close {
-      position: absolute;
-      top: 10px; right: 15px;
-      font-size: 24px;
-      font-weight: bold;
-      color: #6d4c41;
-      cursor: pointer;
-    }
-    .modal-description {
-      margin-top: 15px;
-      color: #3e2723;
-    }
-  </style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #d7ccc8; /* earthy light brown */
+    margin: 0;
+    padding: 0;
+    color: #3e2723;
+  }
+  header {
+    background-color: #6d4c41; /* darker earthy brown */
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+  }
+  .container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 0 1rem;
+    min-height: 700px; /* increased height to prevent cropping */
+  }
+  h1 {
+    margin-bottom: 0.5rem;
+  }
+  .products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  .product {
+    background: #f5f5f5;
+    border-radius: 8px;
+    padding: 15px;
+    width: 220px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    cursor: pointer;
+    text-align: center;
+  }
+  .product img {
+    width: 100%;
+    border-radius: 6px;
+    object-fit: contain; /* changed from cover to contain */
+    height: 200px;       /* increased height */
+    margin-bottom: 10px;
+    transition: transform 0.3s;
+  }
+  .product:hover img {
+    transform: scale(1.05);
+  }
+  .product-name {
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+  }
+  .price {
+    color: #6d4c41;
+    margin-bottom: 10px;
+  }
+  footer {
+    background-color: #6d4c41;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 40px;
+  }
+  /* Modal styles */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 10;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
+  }
+  .modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+    position: relative;
+  }
+  .modal-content img {
+    width: 100%;
+    max-height: 350px;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+  .modal-close {
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #6d4c41;
+    cursor: pointer;
+  }
+  .modal-description {
+    margin-top: 15px;
+    color: #3e2723;
+  }
+</style>
+
 </head>
 <body>
   <header style="
